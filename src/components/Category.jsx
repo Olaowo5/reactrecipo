@@ -59,7 +59,7 @@ const SLink = styled(NavLink)`
     }
     &.active{
         background: linear-gradient(to right,
-            #f27121, #e94047);
+            #9933ff, #e94047);
             svg{
                 color:white;
             }

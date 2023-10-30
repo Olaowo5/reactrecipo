@@ -7,20 +7,39 @@ function Recipe() {
 
     const [theRecipe, setRecipe] = useState([]);
     const [activetab, setActiveTab] = useState("instructions");
+    const [errorMessage, setErrorMessage] = useState(null);
 
     let params = useParams();
     const getrecipe =  async()=>{
-        const data = 
-        await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
-       
-        const TheData = await data.json();
-
-        setRecipe(TheData);
+        try {
+            const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
+      
+            if (data.ok) {
+              const TheData = await data.json();
+              setRecipe(TheData);
+            } else {
+              const errorData = await data.json();
+              setErrorMessage(errorData.message);
+            }
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
     };
 
     useEffect(()=>{
         getrecipe(params.name);
     },[params.name]); //from the pages /;search
+
+    if (errorMessage) {
+        return (
+        <ErrorDiv>
+            <h2>Sorry Error Api Limits exceeded</h2>
+        <div><errormess>
+            {errorMessage}</errormess></div>
+        </ErrorDiv>
+        )
+      }
+    
   return (
     <DetailWrapper>
         <div>
@@ -59,6 +78,36 @@ function Recipe() {
     </DetailWrapper>
   )
 }
+
+const ErrorDiv = styled.div`
+background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+max-width: 600px;
+margin: 0 auto;
+padding: 20px;
+border-radius: 5px;
+text-align: center;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+h2 {
+  font-size: 24px;
+  background: linear-gradient(to right, #9933ff, #e74c3c);
+  -webkit-background-clip: text; 
+  color: transparent; 
+}
+p {
+    font-size: 16px;
+  }
+  
+  `;
+
+  const errormess = styled.div`
+padding: 20px;
+
+`;
 
 const DetailWrapper = styled.div`
     margin-top: 10rem;
