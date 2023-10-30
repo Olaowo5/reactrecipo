@@ -41,6 +41,7 @@ const FormStyle = styled.form`
         border:none;
         border-radius: 1rem;
         outline: none;
+        width: 50%;
 
     }
     svg{
