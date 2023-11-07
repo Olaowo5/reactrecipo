@@ -20,3 +20,6 @@ This app uses the Spoonacular API for retrieving recipe data. You can find more 
 
 ### Acknowledgments
 Spoonacular for providing the recipe data through their API.
+
+#### Link
+https://react-food-app-mqfki.ondigitalocean.app/
