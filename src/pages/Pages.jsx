@@ -5,6 +5,7 @@ import {Route, Routes, useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 import Searched from './Searched';
 import Recipe  from './Recipe';
+import Searcheding from './Searcheding';
 import { AnimatePresence, motion } from 'framer-motion';
 
 function Pages() {
@@ -16,6 +17,7 @@ function Pages() {
       <Route path ="/" element = {<Homes />}/>
       <Route path ="/cuisine/:type" element ={<Cuisine/>}/>
       <Route path="/searched/:search" element={<Searched />}/>
+      <Route path="/searching/:search" element={<Searcheding />}/>
       <Route path="/recipe/:name" element={<Recipe/>}/>
     </Routes>
     </AnimatePresence>

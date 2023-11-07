@@ -16,6 +16,7 @@ function App() {
         <Logo to={"/"}> Ola Recipe App</Logo>
       </Nav>
       <Search />
+      
       <Category />
       <Pages />
       </BrowserRouter>
